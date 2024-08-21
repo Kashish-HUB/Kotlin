@@ -35,9 +35,4 @@ fun main(){
 
     }
 }
-//Design a kotlin program for a store to determine eligibility for a special offer based on the total amount and memberships status
-//Instruction:
-//1.Create a Kotlin program that stimulates a discount suystem for a store
-//2.Define two variables:
-//A variable representing the total amount of purchase
-//
+
