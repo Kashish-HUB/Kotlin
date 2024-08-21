@@ -1,0 +1,20 @@
+fun main(){
+    var amount:Int=10000;
+    val name:String =readln()
+    var discount:Int=0;
+    var membership:String="no";
+    if(amount>=1000){
+        if(membership=="yes"){
+            println("You get 90% Discount")
+            discount=amount/5
+        }
+        else{
+            println("You will get 15% discount")
+            discount=amount/10
+        }
+
+        }
+    else{
+        println("You will not get any discount")
+        }
+    }
