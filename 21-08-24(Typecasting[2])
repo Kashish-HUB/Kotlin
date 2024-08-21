@@ -1,0 +1,8 @@
+fun main(){
+    val x:Int=100
+    val y:Long=x.toLong()
+    println(y)
+    val name:String="Kashish"
+    val j:Int?=name as? Int
+    println(j)
+}
