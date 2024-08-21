@@ -1,0 +1,10 @@
+fun main(){
+    val a=20
+    val num=a%2
+    val m=when(num){
+        1->"Odd"
+        2->"Even"
+        else->"Invalid Number"
+    }
+    println(m)
+}
