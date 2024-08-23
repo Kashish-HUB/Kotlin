@@ -1,0 +1,7 @@
+//for printing index in array
+fun main(){
+    var array= arrayOf("Hi","Hello",123)
+    for(i in array.indices){
+        println("Elements at index $i is "+array[i])
+    }
+}
