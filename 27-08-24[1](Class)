@@ -1,0 +1,9 @@
+class kashu{
+    fun intro(){
+        println("Hello Lpu")
+    }
+}
+fun main(){
+    var a=kashu();
+    a.intro()
+}
