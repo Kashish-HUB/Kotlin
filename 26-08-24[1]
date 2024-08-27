@@ -1,0 +1,6 @@
+fun add(a:Int=5,b:Int=6){
+    println("Sum of $a and $b is: "+(a+b))
+}
+fun sub(a:Int=0,b:Int=0){
+    println("Sub of $a and $b is: "+(a-b))
+}
