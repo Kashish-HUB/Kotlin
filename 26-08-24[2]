@@ -1,0 +1,5 @@
+fun abc(){
+    println("Kashish")
+}
+fun main(){
+    abc()
