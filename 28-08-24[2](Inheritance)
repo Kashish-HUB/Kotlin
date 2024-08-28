@@ -1,0 +1,20 @@
+open class Rectangle(var l:Double, var b:Double){
+
+    fun area():Double{
+        return l*b
+    }
+    open fun display(){
+        println("Area of Rectangle with length $l and breadth $b is: ${area()}")
+    }
+}
+class Square(var s:Double):Rectangle(s,s){
+    override fun display(){
+        println("Area of Square with side $s is: ${area()}")
+    }
+}
+fun main(){
+    var a=Rectangle(1.0,1.0)
+    a.display()
+    var c=Square(5.0)
+    c.display()
+}
