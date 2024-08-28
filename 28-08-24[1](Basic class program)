@@ -1,0 +1,13 @@
+class Rectangle(var l:Double, var b:Double){
+
+    fun area():Double{
+        return l*b
+    }
+    fun display(){
+        println("Area of Rectangle with length $l and breadth $b is: ${area()}")
+    }
+}
+fun main(){
+    var a=Rectangle(1.0,1.0)
+    a.display()
+}
