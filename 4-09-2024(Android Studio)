@@ -1,0 +1,44 @@
+//Basic Application code of Androis Studio
+package com.example.basic
+
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        var a=Toast.makeText(this,"Activity Visible",Toast.LENGTH_LONG)
+        a.show()
+        }
+    override fun onStart()
+    {
+     super.onStart()
+     Toast.makeText(this,"Activity is Start",Toast.LENGTH_SHORT).show()
+    }
+    override fun onResume()
+    {
+        super.onResume()
+        Toast.makeText(this,"Activity is Resume",Toast.LENGTH_SHORT).show()
+    }
+    override fun onPause()
+    {
+        super.onPause()
+        Toast.makeText(this,"Activity is Pause",Toast.LENGTH_SHORT).show()
+    }
+    override fun onDestroy()
+    {
+        super.onDestroy()
+        Toast.makeText(this,"Activity is Destroy",Toast.LENGTH_SHORT).show()
+    }
+    override fun onStop()
+    {
+        super.onStop()
+        Toast.makeText(this,"Activity is Stop",Toast.LENGTH_SHORT).show()
+    }
+    }
