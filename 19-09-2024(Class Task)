@@ -1,0 +1,74 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16sp"
+    android:background="@drawable/logo2"
+    >
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/logo"
+        android:paddingTop="50dp"
+        />
+
+    <EditText
+        android:id="@+id/editTextText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="text"
+        android:text="User Id"
+        android:layout_marginTop="100dp"
+        android:paddingLeft="30dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:shadowColor="@color/black"
+        android:text="Sign In ->"
+        android:textColor="@color/black"
+        android:textColorHint="@color/black"
+        android:textColorLink="#FF5722" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Forgot Password ?"
+        android:layout_marginLeft="130dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/black"/>
+</LinearLayout>
+
+//Kotlin File
+package com.example.task
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val signInButton: Button = findViewById(R.id.button)
+        val userIdEditText: EditText = findViewById(R.id.editTextText)
+
+        signInButton.setOnClickListener {
+            val userId = userIdEditText.text.toString()
+            Toast.makeText(this, "Welcome Back, $userId!", Toast.LENGTH_SHORT).show()
+        }
+    }
+}
