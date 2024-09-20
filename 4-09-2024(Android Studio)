@@ -1,4 +1,5 @@
 //Basic Application code of Androis Studio
+//XML file
 package com.example.basic
 
 import android.os.Bundle
