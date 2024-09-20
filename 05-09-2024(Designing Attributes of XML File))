@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background">
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="100sp"
+        android:layout_height="100sp"
+        android:layout_marginLeft="260dp"
+        android:layout_marginTop="50dp"
+        tools:srcCompat="@drawable/insta" />
+
+    <TextView
+        android:id="@+id/textView2"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="200dp"
+        android:layout_marginLeft="200dp"
+        android:text="Name: Kashish"
+        android:textSize="34sp" />
+
+
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/textView2"
+        android:layout_marginLeft="160dp"
+        android:text="Email: xyz@gmail.com"
+        android:textSize="34sp" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_marginTop="450dp"
+        android:layout_marginLeft="100dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Follow" />
+
+    <Button
+        android:id="@+id/button3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="450dp"
+        android:layout_marginTop="450dp"
+        android:text="Like" />
+
+    <CheckBox
+        android:id="@+id/checkBox"
+        android:layout_marginTop="350dp"
+        android:layout_marginLeft="210dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Accept Terms and Conditions" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_below="@id/textView5"
+        android:layout_marginLeft="200dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Password: 123456"
+        android:textSize="34sp"/>
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_marginTop="520dp"
+        android:layout_marginLeft="230dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create new Account" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_marginTop="560dp"
+        android:layout_marginLeft="300dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="23sp"
+        android:text="OR" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_marginTop="590dp"
+        android:layout_marginLeft="272dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Log In" />
+</RelativeLayout>
