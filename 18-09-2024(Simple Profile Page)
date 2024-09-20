@@ -1,0 +1,90 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:orientation="vertical"
+    android:background="@drawable/back"
+    >
+
+    <TextView
+        android:id="@+id/welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Welcome to my profile"
+        android:textSize="30dp"
+        android:textColor="@color/white"
+        />
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Enter your name"
+        android:textSize="25dp"
+        android:paddingTop="20dp"
+        android:textColor="@color/white"
+        />
+
+    <EditText
+        android:id="@+id/email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textEmailAddress"
+        android:textSize="25dp"
+        android:paddingTop="10dp"
+        android:textColor="@color/white"/>
+
+    <EditText
+        android:id="@+id/pass"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="25dp"
+        android:textColor="@color/white"/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Submit" />
+</LinearLayout>
+
+//Kotlin File
+
+
+package com.example.profile
+
+import android.os.Bundle
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import com.example.profile.R
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val emailEditText = findViewById<EditText>(R.id.email)
+        val passwordEditText = findViewById<EditText>(R.id.pass)
+        val submitButton = findViewById<Button>(R.id.submit)
+
+        submitButton.setOnClickListener {
+            val email = emailEditText.text.toString()
+            val password = passwordEditText.text.toString()
+
+            if (email.isNotEmpty() && password.isNotEmpty()) {
+                Toast.makeText(this, "Email: $email\nPassword: $password", Toast.LENGTH_LONG).show()
+            } else {
+                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+}
