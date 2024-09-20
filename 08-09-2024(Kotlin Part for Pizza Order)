@@ -1,0 +1,42 @@
+package com.example.basic
+
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
+class Pizza : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_pizza)
+
+        val radioGroupSize = findViewById<RadioGroup>(R.id.rgsize)
+        val mushroomCheckBox = findViewById<CheckBox>(R.id.checkBox2)
+        val cheeseCheckBox = findViewById<CheckBox>(R.id.checkBox3)
+        val jalapenoCheckBox = findViewById<CheckBox>(R.id.checkBox4)
+        val placeOrderButton = findViewById<Button>(R.id.button5)
+
+        placeOrderButton.setOnClickListener {
+          
+            val selectedSizeId = radioGroupSize.checkedRadioButtonId
+            val selectedSize = when (selectedSizeId) {
+                R.id.radioButton -> "Large"
+                R.id.radioButton2 -> "Medium"
+                R.id.radioButton3 -> "Small"
+                else -> ""
+            }
+
+           
+            val toppings = mutableListOf<String>()
+            if (mushroomCheckBox.isChecked) toppings.add("Mushroom")
+            if (cheeseCheckBox.isChecked) toppings.add("Cheese")
+            if (jalapenoCheckBox.isChecked) toppings.add("Jalapeno")
+
+            val orderSummary = StringBuilder()
+            orderSummary.append("Pizza Size: $selectedSize\n")
+            orderSummary.append("Toppings: ${if (toppings.isNotEmpty()) toppings.joinToString() else "None"}\n")
+
+            Toast.makeText(this, orderSummary.toString(), Toast.LENGTH_LONG).show()
+        }
+    }
+}
