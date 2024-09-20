@@ -1,0 +1,133 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@drawable/background">
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:shadowColor="#6D7178"
+        android:text="Select your Pizza Size"
+        android:textColorLink="@color/black"
+        android:textSize="24sp"
+        android:textColor="@color/white"/>
+
+    <RadioGroup
+        android:id="@+id/rgsize"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:id="@+id/radioButtonLarge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Large"
+            android:textColor="@color/white"
+            />
+
+        <RadioButton
+            android:id="@+id/radioButtonMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Medium"
+            android:textColor="@color/white"/>
+
+        <RadioButton
+            android:id="@+id/radioButtonSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Small"
+            android:textColor="@color/white"/>
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Choose Toppings"
+        android:textSize="24sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="8dp"
+        android:textColor="@color/white"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxMushroom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Mushroom"
+        android:textColor="@color/white"
+        android:buttonTint="@color/white"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxCheese"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cheese"
+        android:textColor="@color/white"
+        android:buttonTint="@color/white"/>
+
+    <CheckBox
+        android:id="@+id/checkBoxJalapeno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Jalapeno"
+        android:textColor="@color/white"
+        android:buttonTint="@color/white"/>
+
+    <Button
+        android:id="@+id/buttonPlaceOrder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Place Order"
+        android:layout_marginTop="20dp" />
+</LinearLayout>
+
+
+
+
+//Kotlin File
+package com.example.pizzaorder
+
+import android.os.Bundle
+import android.widget.*
+import androidx.appcompat.app.AppCompatActivity
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val radioGroupSize = findViewById<RadioGroup>(R.id.rgsize)
+        val mushroomCheckBox = findViewById<CheckBox>(R.id.checkBoxMushroom)
+        val cheeseCheckBox = findViewById<CheckBox>(R.id.checkBoxCheese)
+        val jalapenoCheckBox = findViewById<CheckBox>(R.id.checkBoxJalapeno)
+        val placeOrderButton = findViewById<Button>(R.id.buttonPlaceOrder)
+
+        placeOrderButton.setOnClickListener {
+            val selectedSizeId = radioGroupSize.checkedRadioButtonId
+            val selectedSize = when (selectedSizeId) {
+                R.id.radioButtonLarge -> "Large"
+                R.id.radioButtonMedium -> "Medium"
+                R.id.radioButtonSmall -> "Small"
+                else -> ""
+            }
+            val toppings = mutableListOf<String>()
+            if (mushroomCheckBox.isChecked) toppings.add("Mushroom")
+            if (cheeseCheckBox.isChecked) toppings.add("Cheese")
+            if (jalapenoCheckBox.isChecked) toppings.add("Jalapeno")
+
+            val orderSummary = StringBuilder()
+            orderSummary.append("Pizza Size: $selectedSize\n")
+            orderSummary.append("Toppings: ${if (toppings.isNotEmpty()) toppings.joinToString() else "None"}\n")
+
+            Toast.makeText(this, orderSummary.toString(), Toast.LENGTH_LONG).show()
+        }
+    }
+}
