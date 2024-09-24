@@ -1,0 +1,80 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity"
+    android:background="@drawable/bg2"
+    android:padding="20dp">
+
+
+    <EditText
+        android:id="@+id/editList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="text"
+        android:hint="Enter the data"
+        android:layout_marginTop="50dp"/>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Add to List"
+        android:layout_marginTop="30dp"/>
+
+    <ListView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp"
+        android:dividerHeight="5dp"/>
+</LinearLayout>
+
+
+
+//Kotlin Code
+package com.example.listview
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ListView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class MainActivity : AppCompatActivity() {
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_main)
+        var data=findViewById<EditText>(R.id.editList)
+        var add=findViewById<Button>(R.id.button)
+        var l=findViewById<ListView>(R.id.list)
+        var b= ArrayList<String>()
+        var d: ArrayAdapter<String> = ArrayAdapter(this, android.R.layout.simple_list_item_1,b)
+        l.adapter=d
+        add.setOnClickListener{
+            var item=data.text.toString()
+            if(item.isNotEmpty()){
+                b.add(item)
+                data.text.clear()
+                d.notifyDataSetChanged()
+            }
+            else{
+                Toast.makeText(this,"No data entered", Toast.LENGTH_LONG).show()
+            }
+        }
+    }
+}
