@@ -1,0 +1,116 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".intent"
+    android:gravity="center">
+
+
+    <Button
+        android:id="@+id/Url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="URL" />
+
+    <Button
+        android:id="@+id/Navigate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Navigate" />
+
+    <Button
+        android:id="@+id/Camera"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Camera" />
+
+    <Button
+        android:id="@+id/Call"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Call" />
+
+    <Button
+        android:id="@+id/Contact"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Contact" />
+
+    <Button
+        android:id="@+id/Gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Gallery" />
+
+    <Button
+        android:id="@+id/Dialer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Dialer" />
+</LinearLayout>
+
+//Kotlin File
+package com.example.constraint
+
+import android.content.Intent
+import android.net.Uri
+import android.os.Bundle
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import android.widget.Button
+import android.provider.MediaStore
+import android.provider.CallLog
+import android.provider.ContactsContract
+
+class intent : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_intent)
+        val btn1=findViewById<Button>(R.id.Url)
+        val btn2=findViewById<Button>(R.id.Navigate)
+        val btn3=findViewById<Button>(R.id.Camera)
+        val btn4=findViewById<Button>(R.id.Call)
+        val btn5=findViewById<Button>(R.id.Contact)
+        val btn6=findViewById<Button>(R.id.Gallery)
+        val btn7=findViewById<Button>(R.id.Dialer)
+        btn1.setOnClickListener{
+            val i1= Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
+            startActivity(i1)
+        }
+        btn3.setOnClickListener {
+            val i2 = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivity(i2)
+        }
+        btn4.setOnClickListener{
+            val i3= Intent(Intent.ACTION_VIEW)
+            i3.setType(CallLog.Calls.CONTENT_TYPE)
+            startActivity(i3)
+        }
+        btn5.setOnClickListener{
+            val i4= Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+            startActivity(i4)
+        }
+        btn6.setOnClickListener{
+            val i5= Intent()
+            i5.action= Intent.ACTION_VIEW
+            i5.type="image/*"
+            startActivity(i5)
+        }
+        btn2.setOnClickListener{
+            val i6= Intent(Intent.ACTION_PICK, ContactsContract.Contacts.CONTENT_URI)
+            startActivity(i6)
+        }
+        btn7.setOnClickListener{
+            val i7= Intent(Intent.ACTION_DIAL)
+            i7.setData(Uri.parse("tel:+91123456789"))
+            startActivity(i7)
+        }
+    }
+}
