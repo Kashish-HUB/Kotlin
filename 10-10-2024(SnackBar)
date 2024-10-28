@@ -1,0 +1,67 @@
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_margin="20sp">
+
+    <TextView
+        android:id="@+id/item1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:text="Item"
+        android:textSize="24sp" />
+
+    <Button
+        android:id="@+id/item2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Remove Item"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="30dp" />
+
+</LinearLayout>
+
+//Kotlin File
+package com.example.constraint
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.view.View
+import android.widget.Button
+import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.example.constraint.R 
+
+
+class snackbar : AppCompatActivity() {
+
+    private lateinit var itemTextView: TextView
+    private lateinit var buttonRemoveItem: Button
+    private var itemRemoved = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        itemTextView = findViewById(R.id.item1)
+        buttonRemoveItem = findViewById(R.id.item2)
+
+        buttonRemoveItem.setOnClickListener { view ->
+            if (!itemRemoved) {
+                itemTextView.text = "" 
+                itemRemoved = true
+                val snackbar = Snackbar.make(view, "Item removed", Snackbar.LENGTH_LONG)
+                snackbar.setAction("Undo") {
+                    itemTextView.text = "Item"
+                    itemRemoved = false
+                }
+                snackbar.show()
+            }
+        }
+    }
+}
