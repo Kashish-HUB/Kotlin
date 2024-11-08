@@ -1,0 +1,89 @@
+//Need to create a different layout file and join it with file which have button to show dialog box
+//So 2 layout files should be there and 1 kotlin file
+//dialog.kt
+package com.example.portfolio
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.widget.Button
+import android.widget.EditText
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+
+class dialog : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_dialog)
+        val custom = findViewById<Button>(R.id.button8)
+        custom.setOnClickListener {
+            val dialogView = LayoutInflater.from(this).inflate(R.layout.layout, null)
+            val b = AlertDialog.Builder(this).setView(dialogView)
+            b.setPositiveButton("Subscribe") { dialog, _ ->
+                val e = dialogView.findViewById<EditText>(R.id.editTextTextEmailAddress)
+                val email = e.text.toString()
+                if (email.isNotBlank()) {
+                    Toast.makeText(this, "Subscribed with: $email", Toast.LENGTH_SHORT).show()
+                } else {
+                    Toast.makeText(this, "Please enter a valid email", Toast.LENGTH_SHORT).show()
+                }
+                dialog.dismiss()
+            }
+            b.setNegativeButton("No") { dialog, _ -> dialog.dismiss() }
+            b.create().show()
+        }
+    }
+}
+
+//dialog.xml
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialog">
+
+    <Button
+        android:id="@+id/button8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show custom dialog box"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+//now make this file attached with dialog.kt with the help of inflater
+//layout.xml
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Subscribe to the newsletter" />
+
+    <EditText
+        android:id="@+id/editTextTextEmailAddress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Enter your E-mail"
+        android:inputType="textEmailAddress"
+        android:textSize="30sp"
+         />
+</LinearLayout>
