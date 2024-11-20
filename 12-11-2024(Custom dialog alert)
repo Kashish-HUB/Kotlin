@@ -1,0 +1,91 @@
+//rotate the image by long pressing it
+//Kotlin File
+package com.example.portfolio
+
+import android.graphics.Color
+import android.os.Bundle
+import android.view.ContextMenu
+import android.view.MenuInflater
+import android.view.MenuItem
+import android.view.View
+import android.widget.ImageView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+
+class custom : AppCompatActivity() {
+
+    private var isRotated = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_custom)
+
+        val imageView = findViewById<ImageView>(R.id.imageView17)
+        registerForContextMenu(imageView)
+
+        imageView.setOnClickListener {
+            if (!isRotated) {
+
+                imageView.rotation = imageView.rotation + 45f
+                isRotated = true
+                Toast.makeText(this, "Image rotated by 45 degrees", Toast.LENGTH_SHORT).show()
+            } else {
+                imageView.visibility = View.GONE
+                isRotated = false
+                Toast.makeText(this, "Image hidden", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+    override fun onCreateContextMenu(
+        menu: ContextMenu?,
+        v: View?,
+        menuInfo: ContextMenu.ContextMenuInfo?
+    ) {
+        super.onCreateContextMenu(menu, v, menuInfo)
+        val inflater: MenuInflater = menuInflater
+        inflater.inflate(R.menu.custom_menu_sample, menu)
+    }
+
+    override fun onContextItemSelected(item: MenuItem): Boolean {
+        val imageView = findViewById<ImageView>(R.id.imageView17)
+        return when (item.itemId) {
+            R.id.change_color -> {
+                imageView.setColorFilter(Color.RED)
+                Toast.makeText(this, "Image color changed to red", Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            R.id.rotate -> {
+                imageView.rotation = imageView.rotation + 45f
+                Toast.makeText(this, "Image rotated by 45 degrees", Toast.LENGTH_SHORT).show()
+                true
+            }
+
+            else -> super.onContextItemSelected(item)
+        }
+    }
+}
+
+
+//XML File
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".custom">
+
+    <ImageView
+        android:id="@+id/imageView17"
+        android:layout_width="275dp"
+        android:layout_height="307dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ai" />
+</androidx.constraintlayout.widget.ConstraintLayout>
